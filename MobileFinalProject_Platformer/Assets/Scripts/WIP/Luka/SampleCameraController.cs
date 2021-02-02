@@ -5,8 +5,9 @@ using UnityEngine;
 public class SampleCameraController : MonoBehaviour
 {
     private Transform player;
-
-    private float yOffset = 2f;
+    [SerializeField]
+    private float yOffset = 12f;
+    [SerializeField]
     private float zOffset = -7f;
 
 
