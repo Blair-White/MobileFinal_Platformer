@@ -8,9 +8,10 @@ public class GameplayController : MonoBehaviour
 
     public enum GameStates { EnterInit, Init, EnterGameplay, Gameplay, EnterLevelComplete, LevelComplete, EnterDeath, Death, Paused}
     public GameStates State;
-
+    private float countA, countB;
     private void Start()
     {
+        player = GameObject.Find("Player");
         State = GameStates.EnterInit;
     }
     private void Update()
@@ -18,10 +19,16 @@ public class GameplayController : MonoBehaviour
         switch (State)
         {
             case GameStates.EnterInit:
+                countA+=Time.deltaTime;
+                if (countA > 3) State = GameStates.Init;
                 break;
             case GameStates.Init:
+                player.SendMessage("GameStart");
+                State = GameStates.EnterGameplay;
                 break;
             case GameStates.EnterGameplay:
+                Debug.Log("Game Initialized, Starting Gameplay");
+                State = GameStates.Gameplay;
                 break;
             case GameStates.Gameplay:
                 break;
