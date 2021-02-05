@@ -50,7 +50,7 @@ public class SwipeDetection : MonoBehaviour
         //Check if Vertical swipe
         if (verticalMove() > SWIPE_THRESHOLD && verticalMove() > horizontalValMove())
         {
-            //Debug.Log("Vertical");
+            Debug.Log("Vertical");
             if (fingerDown.y - fingerUp.y > 0)//up swipe
             {
                 OnSwipeUp();
@@ -65,7 +65,7 @@ public class SwipeDetection : MonoBehaviour
         //Check if Horizontal swipe
         else if (horizontalValMove() > SWIPE_THRESHOLD && horizontalValMove() > verticalMove())
         {
-            //Debug.Log("Horizontal");
+            Debug.Log("Horizontal");
             if (fingerDown.x - fingerUp.x > 0)//Right swipe
             {
                 OnSwipeRight();
