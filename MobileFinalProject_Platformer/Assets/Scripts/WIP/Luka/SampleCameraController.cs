@@ -5,12 +5,6 @@ using UnityEngine;
 public class SampleCameraController : MonoBehaviour
 {
     private Transform player;
-    [SerializeField]
-    private float yOffset = 12f;
-    [SerializeField]
-    private float zOffset = -7f;
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +14,8 @@ public class SampleCameraController : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = new Vector3(player.position.x, player.position.y + yOffset, player.position.z + zOffset);
+        transform.LookAt(player);
+        if(player.GetComponent<PlayerMobileController>().isRotating)
+        transform.Translate(Vector3.right * Time.deltaTime);
     }
 }

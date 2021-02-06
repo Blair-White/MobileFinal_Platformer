@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class PlayerMobileController : MonoBehaviour
 {
-    public float baseMovementSpeed = 14f;
+    public float baseMovementSpeed, swipeForce;
     private float movementSpeed;
-    private bool isSlowed, isMoving, isIdle, isSliding;
-    private float slowCount;
+    private bool isSlowed, isMoving, isIdle, isSliding, isGrounded;
+    public bool isRotating;
+    private float slowCount, rotateCount;
     public SpawnManager spawnManager;
-    private enum MoveDirections { forward, left, right, back  }//based on starting position + Z is forward
-    private MoveDirections moveDirection;
+    public enum MoveDirections { forward, left, back, right  }//based on starting position + Z is forward
+    public MoveDirections moveDirection;
     // Start is called before the first frame update
     void Start()
     {
         movementSpeed = baseMovementSpeed;
         moveDirection = MoveDirections.forward;
+        isGrounded = true;
     }
 
     // Update is called once per frame
@@ -33,11 +35,23 @@ public class PlayerMobileController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow) || (Input.GetKeyDown(KeyCode.A))) { Swiped("left"); }
             if (Input.GetKeyDown(KeyCode.RightArrow) || (Input.GetKeyDown(KeyCode.D))) { Swiped("right"); }
+            if (Input.GetKeyDown(KeyCode.W) || (Input.GetKeyDown(KeyCode.Space))) { Swiped("up"); }
+
             Move();
         }
-            
-            
-        
+
+    }
+
+
+    private void FixedUpdate()
+    {
+       
+        if (isRotating)
+        {
+            rotateCount += Time.deltaTime;
+            if (rotateCount > .89f) { isRotating = false; rotateCount = 0; }
+            transform.Rotate(0.0f, -2f, 0.0f, Space.Self);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,24 +61,7 @@ public class PlayerMobileController : MonoBehaviour
 
     private void Move()
     {
-        switch (moveDirection)
-        {
-            case MoveDirections.forward:
-                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + movementSpeed * Time.deltaTime);
-                break;
-            case MoveDirections.left:
-                transform.position = new Vector3(transform.position.x + movementSpeed * Time.deltaTime, transform.position.y, transform.position.z);
-                break;
-            case MoveDirections.right:
-                transform.position = new Vector3(transform.position.x - movementSpeed * Time.deltaTime, transform.position.y, transform.position.z);
-                break;
-            case MoveDirections.back:
-                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - movementSpeed * Time.deltaTime);
-                break;
-            default:
-                break;
-        }
-        
+         transform.position += transform.forward * movementSpeed * Time.deltaTime;
     }
     private void Swiped(string Direction)
     {
@@ -73,14 +70,51 @@ public class PlayerMobileController : MonoBehaviour
         switch (Direction)
         {
             case "left":
-                this.gameObject.GetComponent<Rigidbody>().AddForce(-10f, 0, 0, ForceMode.Impulse);
+                transform.Translate(Vector3.left * 20);
                 break;
             case "right":
-                this.gameObject.GetComponent<Rigidbody>().AddForce(10f, 0, 0, ForceMode.Impulse );
+                transform.Translate(Vector3.right * 20);
+                break;
+            case "up":
+                if(isGrounded)
+                    this.GetComponent<Rigidbody>().AddForce(0, 222, 0, ForceMode.Impulse);
                 break;
             default:
                 break;
         }
+    }
+
+    private void ChangeDirection(MoveDirections current)
+    {
+        switch (current)
+        {
+            case MoveDirections.forward:
+                moveDirection = MoveDirections.left;
+                break;
+            case MoveDirections.left:
+                moveDirection = MoveDirections.back;
+                break;
+            case MoveDirections.back:
+                moveDirection = MoveDirections.right;
+                break;
+            case MoveDirections.right:
+                moveDirection = MoveDirections.forward;
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "TurnCollider")
+        {
+            //temp
+            if (!isRotating) { isRotating = true; ChangeDirection(moveDirection); }
+        }
+        if (collision.gameObject.tag == "Platform")
+            if (!isGrounded) isGrounded = true;
+
     }
 
 
