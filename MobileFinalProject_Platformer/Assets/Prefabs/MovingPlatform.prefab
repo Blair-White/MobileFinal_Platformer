@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8497571724146646404}
   m_Layer: 0
   m_Name: MovingPlatform
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Endpoint: {fileID: 7456570998816206024}
+  speed: 15
 --- !u!1 &7456570998816206024
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMobileController : MonoBehaviour
 {
     public float baseMovementSpeed, swipeForce;
-    private float movementSpeed;
+    private float movementSpeed, health;
+    public GameObject healthbar, score, hscore;
+    private int mScore;
     private bool isSlowed, isMoving, isIdle, isSliding, isGrounded;
     public bool isRotating;
     private float slowCount, rotateCount;
@@ -15,14 +18,19 @@ public class PlayerMobileController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        health = 1;
         movementSpeed = baseMovementSpeed;
         moveDirection = MoveDirections.forward;
         isGrounded = true;
+        hscore.GetComponent<TextMeshProUGUI>().text = PlayerPrefs.GetInt("HighScore").ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
+        mScore++;
+        score.GetComponent<TextMeshProUGUI>().text = mScore.ToString();
+        healthbar.transform.localScale = new Vector3(health, 1, 1);
         if (isIdle) return;
 
         if (isSlowed)
@@ -113,11 +121,22 @@ public class PlayerMobileController : MonoBehaviour
             if (!isRotating) { isRotating = true; ChangeDirection(moveDirection); }
         }
         if (collision.gameObject.tag == "Platform")
+        {
+            //temp
+            health -= 0.1f;
             if (!isGrounded) isGrounded = true;
+
+        }    
+            
 
     }
 
-
+    public void SetScore() 
+    {
+        int sc = PlayerPrefs.GetInt("HighScore");
+        if(sc < mScore)
+        PlayerPrefs.SetInt("HighScore", mScore); 
+    }
     private void GameStart() { isMoving = true; }
     private void HitSlow() { if (isSlowed) return; isSlowed = true; movementSpeed = baseMovementSpeed / 2; }
     private void EndSlow() { isSlowed = false; movementSpeed = baseMovementSpeed; slowCount = 0; }
