@@ -19,6 +19,10 @@ public class MenuButtonBehaviour : MonoBehaviour
 
     public void OnBackButtonPressed()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("MainMenuScene");
+    }
+    public void OnOptionsButtonPressed()
+    {
+        SceneManager.LoadScene("Options");
     }
 }
