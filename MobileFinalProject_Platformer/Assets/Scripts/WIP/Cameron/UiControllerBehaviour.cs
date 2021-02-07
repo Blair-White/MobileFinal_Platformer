@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UiControllerBehaviour : MonoBehaviour
 {
     public GameObject pauseCanvas;
     public GameObject hudCanvas;
+    public TextMeshProUGUI countdown;
+
+    
     void Start()
     {
         pauseCanvas.SetActive(false);
@@ -26,6 +30,17 @@ public class UiControllerBehaviour : MonoBehaviour
     }
     void Update()
     {
+ 
+    }
+
+    public void UpdateCountdown(int secondsLeft)
+    {
+        int countdownShown = secondsLeft;
+        countdown.SetText(secondsLeft.ToString());
         
+        if (secondsLeft == 0)
+        {
+            countdown.gameObject.SetActive(false);
+        }
     }
 }
