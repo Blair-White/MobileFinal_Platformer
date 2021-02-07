@@ -7,7 +7,10 @@ public class MovingPlatformBehaviour : MonoBehaviour
 
     public GameObject Endpoint;
     private Vector3 start, end;
-    private bool leftRight;
+    private bool isMovingRight = false;
+
+    [SerializeField]
+    private float speed = 15f;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,23 +28,21 @@ public class MovingPlatformBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!leftRight)
+        if(!isMovingRight)
         {
-            this.transform.position = Vector3.MoveTowards(this.transform.position, end, 15 * Time.deltaTime);
-            if(Vector3.Distance(this.transform.position, end) < 0.0001f)
+            transform.position = Vector3.MoveTowards(transform.position, end, speed * Time.deltaTime);
+            if(Vector3.Distance(transform.position, end) < Mathf.Epsilon)
             {
-                leftRight = true;
+                isMovingRight = true;
             }
         }
-
-        if (leftRight)
+        else
         {
-            this.transform.position = Vector3.MoveTowards(this.transform.position, start, 15 * Time.deltaTime);
-            if (Vector3.Distance(this.transform.position, start) < 0.0001f)
+            transform.position = Vector3.MoveTowards(transform.position, start, speed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, start) < Mathf.Epsilon)
             {
-                leftRight = false;
+                isMovingRight = false;
             }
         }
-
     }
 }
