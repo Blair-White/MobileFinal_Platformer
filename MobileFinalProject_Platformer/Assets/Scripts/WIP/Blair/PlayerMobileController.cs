@@ -74,7 +74,7 @@ public class PlayerMobileController : MonoBehaviour
     private void Swiped(string Direction)
     {
         if (isSliding) return;
-        
+        Soundmanager.instance.PlaySoundOneShot(Soundmanager.instance.SwipeMove, .5f);
         switch (Direction)
         {
             case "left":
@@ -111,6 +111,7 @@ public class PlayerMobileController : MonoBehaviour
             default:
                 break;
         }
+        Soundmanager.instance.PlaySoundOneShot(Soundmanager.instance.SwipeMove, .5f);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -138,6 +139,12 @@ public class PlayerMobileController : MonoBehaviour
         PlayerPrefs.SetInt("HighScore", mScore); 
     }
     private void GameStart() { isMoving = true; }
-    private void HitSlow() { if (isSlowed) return; isSlowed = true; movementSpeed = baseMovementSpeed / 2; }
+    private void HitSlow() 
+    {
+        if (isSlowed) return; 
+        isSlowed = true;
+        movementSpeed = baseMovementSpeed / 2;
+        Soundmanager.instance.PlaySoundOneShot(Soundmanager.instance.Slowed, .5f);
+    }
     private void EndSlow() { isSlowed = false; movementSpeed = baseMovementSpeed; slowCount = 0; }
 }

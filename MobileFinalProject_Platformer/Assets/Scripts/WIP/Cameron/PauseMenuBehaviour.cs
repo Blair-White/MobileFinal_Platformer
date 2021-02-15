@@ -14,16 +14,19 @@ public class PauseMenuBehaviour : MonoBehaviour
     public void OnPressedInGamePauseButton()
     {
         UiController.GetComponent<UiControllerBehaviour>().PauseGame();
+        Soundmanager.instance.PlaySoundOneShot(Soundmanager.instance.Click, .75f);
     }
 
     public void OnPressedInGameResumeButton()
     {
         UiController.GetComponent<UiControllerBehaviour>().ResumeGame();
+        Soundmanager.instance.PlaySoundOneShot(Soundmanager.instance.Click, .75f);
     }
 
     public void OnPressedMainMenuButton()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenuScene");
+        Soundmanager.instance.PlaySoundOneShot(Soundmanager.instance.Click, .75f);
     }
 }
