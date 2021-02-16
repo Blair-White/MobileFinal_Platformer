@@ -7,9 +7,9 @@ public class PlayerMobileController : MonoBehaviour
 {
     public float baseMovementSpeed, swipeForce;
     private float movementSpeed, health;
-    public GameObject healthbar, score, hscore;
-    private int mScore;
-    private bool isSlowed, isMoving, isIdle, isSliding, isGrounded;
+    public GameObject healthbar, score, hscore, currentTurnCollider;
+    private int mScore, swipePosition, slideCount;
+    private bool isSlowed, isMoving, isIdle, isSlidingLeft, isSlidingRight, isGrounded;
     public bool isRotating;
     private float slowCount, rotateCount;
     public SpawnManager spawnManager;
@@ -60,6 +60,26 @@ public class PlayerMobileController : MonoBehaviour
             if (rotateCount > .89f) { isRotating = false; rotateCount = 0; }
             transform.Rotate(0.0f, -2f, 0.0f, Space.Self);
         }
+        if(isSlidingLeft) 
+        {
+            slideCount++;
+            if (slideCount == 19)
+            {
+                isSlidingLeft = false; slideCount = 0;
+            }
+            transform.Translate(Vector3.left * 1);
+        }
+
+        if (isSlidingRight)
+        {
+            slideCount++;
+            if (slideCount == 19)
+            {
+                isSlidingRight = false; slideCount = 0;
+            }
+            transform.Translate(Vector3.right * 1);
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -69,23 +89,33 @@ public class PlayerMobileController : MonoBehaviour
 
     private void Move()
     {
-         transform.position += transform.forward * movementSpeed * Time.deltaTime;
+         transform.position += transform.forward * movementSpeed * Time.deltaTime; 
+         
     }
     private void Swiped(string Direction)
     {
-        if (isSliding) return;
+        
+        if (isRotating || isSlidingLeft || isSlidingRight) return;
         Soundmanager.instance.PlaySoundOneShot(Soundmanager.instance.SwipeMove, .5f);
         switch (Direction)
         {
             case "left":
-                transform.Translate(Vector3.left * 20);
+                if (swipePosition == -2) return;
+                isSlidingLeft = true;
+                swipePosition--;
                 break;
             case "right":
-                transform.Translate(Vector3.right * 20);
+                if (swipePosition == 2) return;
+                isSlidingRight = true;
+                swipePosition++;
                 break;
             case "up":
                 if(isGrounded)
-                    this.GetComponent<Rigidbody>().AddForce(0, 222, 0, ForceMode.Impulse);
+                {
+                this.GetComponent<Rigidbody>().AddForce(0, 222, 0, ForceMode.Impulse);
+                isGrounded = false;
+                }
+                
                 break;
             default:
                 break;
@@ -118,8 +148,11 @@ public class PlayerMobileController : MonoBehaviour
     {
         if(collision.gameObject.tag == "TurnCollider")
         {
+            if (collision.gameObject == currentTurnCollider) return;
             //temp
             if (!isRotating) { isRotating = true; ChangeDirection(moveDirection); }
+            swipePosition = 0;
+            currentTurnCollider = collision.gameObject;
         }
         if (collision.gameObject.tag == "Platform")
         {
@@ -131,6 +164,7 @@ public class PlayerMobileController : MonoBehaviour
             
 
     }
+    
 
     public void SetScore() 
     {
