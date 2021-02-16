@@ -9,6 +9,10 @@ TagManager:
   - Platform
   - UiController
   - Enemy
+  - mushroom
+  - gem
+  - slow
+  - goal
   layers:
   - Default
   - TransparentFX

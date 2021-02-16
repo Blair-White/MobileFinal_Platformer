@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerMobileController : MonoBehaviour
 {
     public float baseMovementSpeed, swipeForce;
     private float movementSpeed, health;
-    public GameObject healthbar, score, hscore, currentTurnCollider;
-    private int mScore, swipePosition, slideCount;
+    public GameObject healthbar, score, hscore, currentTurnCollider, mushroomPrefab, gemPrefab, mushroomAmount, gemAmount;
+    private int mScore, swipePosition, slideCount, mushroomInt, gemInt;
     private bool isSlowed, isMoving, isIdle, isSlidingLeft, isSlidingRight, isGrounded;
     public bool isRotating;
     private float slowCount, rotateCount;
@@ -160,10 +161,30 @@ public class PlayerMobileController : MonoBehaviour
             health -= 0.1f;
             if (!isGrounded) isGrounded = true;
 
-        }    
-            
+        }
+
+        if (collision.gameObject.tag == "mushroom")
+        {
+            Destroy(collision.gameObject);
+            mushroomInt++;
+            mushroomAmount.GetComponent<TextMeshProUGUI>().text = mushroomInt.ToString();
+        }
+        
+        if(collision.gameObject.tag == "gem")
+        {
+            Destroy(collision.gameObject);
+            gemInt++;
+            gemAmount.GetComponent<TextMeshProUGUI>().text = gemInt.ToString();
+        }
+
+        if(collision.gameObject.tag == "goal")
+        {
+            SceneManager.LoadScene(4);
+        }
 
     }
+
+
     
 
     public void SetScore() 
