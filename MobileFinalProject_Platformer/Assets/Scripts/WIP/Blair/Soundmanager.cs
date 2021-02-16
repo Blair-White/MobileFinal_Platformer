@@ -20,8 +20,7 @@ public class Soundmanager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SfxSlider = GameObject.Find("SfxSlider");
-        MusicSlider = GameObject.Find("MusicSlider");
+
         SfxGlobalModifier = 1; MusicGlobalModifier = 1;
         MusicSrc.volume = StartingMusicVolume;
     }
