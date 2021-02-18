@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Test Scenes/Blair/LogoScene.unity
+    guid: def5a23cbed662d43afd35f9eb2740a3
+  - enabled: 1
+    path: Assets/Scenes/Test Scenes/Blair/MainMenuScene.unity
+    guid: 71648fea6e0105940b9d9ab88a6c0588
+  - enabled: 1
+    path: Assets/Scenes/TestScene.unity
+    guid: f91ea9bb570d76544ac7afa648b41b2f
+  - enabled: 1
+    path: Assets/Scenes/Test Scenes/Cameron/Options.unity
+    guid: 75c991b559dded249973d84cf08f8145
+  - enabled: 1
+    path: Assets/Scenes/Test Scenes/Blair/WinScene.unity
+    guid: 1bf8d78af756c4344b3c6d8110c7a1e8
   m_configObjects: {}
