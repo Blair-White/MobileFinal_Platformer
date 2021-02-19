@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2064651249227684110}
   - component: {fileID: 2064651249227684111}
   - component: {fileID: 2064651249227684104}
+  - component: {fileID: 6317144891436436778}
   m_Layer: 0
   m_Name: RotatingPlatform
   m_TagString: Platform
@@ -109,3 +110,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotationSpeed: 0.25
+--- !u!114 &6317144891436436778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064651249227684105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62bba19060faf1744b4d0ef36b0599f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toDestroy: {fileID: 2064651249227684105}

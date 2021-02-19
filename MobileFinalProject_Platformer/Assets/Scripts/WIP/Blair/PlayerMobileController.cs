@@ -147,7 +147,7 @@ public class PlayerMobileController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "TurnCollider")
+        if (collision.gameObject.tag == "TurnCollider")
         {
             if (collision.gameObject == currentTurnCollider) return;
             //temp
@@ -159,8 +159,13 @@ public class PlayerMobileController : MonoBehaviour
         {
             //temp
             health -= 0.1f;
-            if (!isGrounded) isGrounded = true;
+            
 
+        }
+
+        if (collision.gameObject.tag == "Ground")
+        {
+            if (!isGrounded) isGrounded = true;
         }
 
         if (collision.gameObject.tag == "mushroom")
