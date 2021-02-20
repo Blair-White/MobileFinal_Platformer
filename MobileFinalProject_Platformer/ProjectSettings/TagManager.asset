@@ -14,6 +14,10 @@ TagManager:
   - slow
   - goal
   - Ground
+  - speedup
+  - DamagePickup
+  - CoinPickup
+  - FistPickup
   layers:
   - Default
   - TransparentFX

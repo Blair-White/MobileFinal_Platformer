@@ -8,11 +8,11 @@ public class PlayerMobileController : MonoBehaviour
 {
     public float baseMovementSpeed, swipeForce;
     private float movementSpeed, health;
-    public GameObject healthbar, score, hscore, currentTurnCollider, mushroomPrefab, gemPrefab, mushroomAmount, gemAmount;
-    private int mScore, swipePosition, slideCount, mushroomInt, gemInt;
-    private bool isSlowed, isMoving, isIdle, isSlidingLeft, isSlidingRight, isGrounded;
+    public GameObject healthbar, score, hscore, currentTurnCollider, mushroomPrefab, gemPrefab, fistAmount, mushroomAmount, coinAmount, gemAmount;
+    private int mScore, swipePosition, slideCount, mushroomInt, gemInt, coinInt, fistInt;
+    private bool isSlowed, isFast, isMoving, isIdle, isSlidingLeft, isSlidingRight, isGrounded;
     public bool isRotating;
-    private float slowCount, rotateCount;
+    private float slowCount, fastCount, rotateCount;
     public SpawnManager spawnManager;
     public enum MoveDirections { forward, left, back, right  }//based on starting position + Z is forward
     public MoveDirections moveDirection;
@@ -38,6 +38,12 @@ public class PlayerMobileController : MonoBehaviour
         {
             slowCount += Time.deltaTime;
             if (slowCount > 3) { EndSlow(); }
+        }
+
+        if (isFast)
+        {
+            fastCount += Time.deltaTime;
+            if (fastCount > 3) { EndFast(); }
         }
 
         if (isMoving)
@@ -159,7 +165,7 @@ public class PlayerMobileController : MonoBehaviour
         {
             //temp
             health -= 0.1f;
-            
+
 
         }
 
@@ -174,17 +180,38 @@ public class PlayerMobileController : MonoBehaviour
             mushroomInt++;
             mushroomAmount.GetComponent<TextMeshProUGUI>().text = mushroomInt.ToString();
         }
-        
-        if(collision.gameObject.tag == "gem")
+
+        if (collision.gameObject.tag == "gem")
         {
             Destroy(collision.gameObject);
             gemInt++;
             gemAmount.GetComponent<TextMeshProUGUI>().text = gemInt.ToString();
         }
 
+        if (collision.gameObject.tag == "DamagePickup")
+        {
+            Destroy(collision.gameObject);
+            health -= 0.1f;
+        }
+
+        if (collision.gameObject.tag == "CoinPickup")
+        {
+            Destroy(collision.gameObject);
+            coinInt++;
+            coinAmount.GetComponent<TextMeshProUGUI>().text = coinInt.ToString();
+            Soundmanager.instance.PlaySoundOneShot(Soundmanager.instance.PowerUp, .6f);
+        }
+
         if(collision.gameObject.tag == "goal")
         {
             SceneManager.LoadScene(4);
+        }
+
+        if(collision.gameObject.tag == "FistPickup")
+        {
+            Destroy(collision.gameObject);
+            fistInt++;
+            fistAmount.GetComponent<TextMeshProUGUI>().text = fistInt.ToString();
         }
 
     }
@@ -206,5 +233,24 @@ public class PlayerMobileController : MonoBehaviour
         movementSpeed = baseMovementSpeed / 2;
         Soundmanager.instance.PlaySoundOneShot(Soundmanager.instance.Slowed, .5f);
     }
+    private void HitFast()
+    {
+        if (isFast) return;
+        isFast = true;
+        movementSpeed = baseMovementSpeed * 2;
+        Soundmanager.instance.PlaySoundOneShot(Soundmanager.instance.PowerUp, .5f);
+    }
     private void EndSlow() { isSlowed = false; movementSpeed = baseMovementSpeed; slowCount = 0; }
+    private void EndFast() { isFast = false; movementSpeed = baseMovementSpeed; fastCount = 0; }
+
+    public void UsedMushroom() 
+    {
+        if(mushroomInt > 0)
+        {
+            mushroomInt--;
+            mushroomAmount.GetComponent<TextMeshProUGUI>().text = mushroomInt.ToString();
+            health += 0.2f;
+            if (health > 1) health = 1;
+        }
+    }
 }
