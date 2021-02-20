@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
 
+    public GameObject MainUI, OptionsUI;
+
     public enum MainMenuStates { EnterInit, Init, Options, Credits, EnterStartGame, StartGame }
     MainMenuStates State;
 
@@ -47,9 +49,15 @@ public class MainMenuController : MonoBehaviour
 
     public void OptionsButtonPushed()
     {
-        
+        MainUI.SetActive(false);
+        OptionsUI.SetActive(true);
     }
 
+    public void CloseOptions()
+    {
+        MainUI.SetActive(true);
+        OptionsUI.SetActive(false);
+    }
     public void CloseGameButtonPushed()
     { 
     
