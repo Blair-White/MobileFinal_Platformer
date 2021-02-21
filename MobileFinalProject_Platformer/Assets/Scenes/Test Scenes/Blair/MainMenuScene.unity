@@ -1599,7 +1599,6 @@ GameObject:
   - component: {fileID: 1188561599}
   - component: {fileID: 1188561598}
   - component: {fileID: 1188561597}
-  - component: {fileID: 1188561596}
   m_Layer: 5
   m_Name: Music Volume
   m_TagString: Untagged
@@ -1628,18 +1627,6 @@ RectTransform:
   m_AnchoredPosition: {x: -86, y: -59}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1188561596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1188561594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93560121631165b47b38d488a4275030, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1188561597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1973,7 +1960,6 @@ GameObject:
   - component: {fileID: 1346023054}
   - component: {fileID: 1346023053}
   - component: {fileID: 1346023052}
-  - component: {fileID: 1346023051}
   m_Layer: 5
   m_Name: SFX Volume
   m_TagString: Untagged
@@ -2002,18 +1988,6 @@ RectTransform:
   m_AnchoredPosition: {x: -86, y: -119}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1346023051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1346023049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93560121631165b47b38d488a4275030, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1346023052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3651,7 +3625,7 @@ GameObject:
   - component: {fileID: 1904942850}
   - component: {fileID: 1904942849}
   m_Layer: 5
-  m_Name: Pigeon (1)
+  m_Name: RightPigeon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3937,7 +3911,7 @@ GameObject:
   - component: {fileID: 1969476042}
   - component: {fileID: 1969476041}
   m_Layer: 5
-  m_Name: Pigeon
+  m_Name: LeftPigeon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
