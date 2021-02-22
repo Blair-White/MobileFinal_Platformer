@@ -14,16 +14,7 @@ public class AudioManager : MonoBehaviour
 
     public void ToggleSound()
     {
-        if (AudioListener.volume > 0)
-        {
-            AudioListener.volume = 0;
-        }
-        else
-        {
-            AudioListener.volume = lastVolume;
-        }
-
-          //  AudioListener.volume > 0 ? AudioListener.volume = 0 : AudioListener.volume = lastVolume;
+          AudioListener.volume = AudioListener.volume > 0 ?  0 : lastVolume;
     }
 
     public void OnVolumeValueChanged(float newValue)
