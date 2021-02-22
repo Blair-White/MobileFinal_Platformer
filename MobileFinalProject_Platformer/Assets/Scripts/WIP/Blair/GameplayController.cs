@@ -9,8 +9,10 @@ public class GameplayController : MonoBehaviour
     public enum GameStates { EnterInit, Init, EnterGameplay, Gameplay, EnterLevelComplete, LevelComplete, EnterDeath, Death, Paused}
     public GameStates State;
     private float gameStartCountdown = 4f;
+    public int score;
     private void Start()
     {
+        score = 0;
         player = GameObject.Find("Player");
         State = GameStates.EnterInit;
     }

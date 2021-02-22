@@ -9,4 +9,9 @@ public class WinSceneController : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene(2);
+    }
+
 }
