@@ -47,6 +47,26 @@ MonoBehaviour:
   - {fileID: 972773510166555477}
   speed: 20
   range: 1
+  animatorController: {fileID: 0}
+--- !u!95 &1007629762
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972773510425379849}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 93e3c2b08cdddef48a084d8def08276c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &972773511519526586
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,7 +78,7 @@ GameObject:
   - component: {fileID: 972773511519526585}
   m_Layer: 0
   m_Name: PatrolEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

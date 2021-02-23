@@ -32,20 +32,20 @@ public class PlayerController : MonoBehaviour
 
         if (movement != Vector3.zero)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15f);
-            anim.SetInteger("Walk", 1);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15f);
+            //anim.SetInteger("Walk", 1);
         }
         else {
-            anim.SetInteger("Walk", 0);
+            //anim.SetInteger("Walk", 1);
         }
 
-        transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
+        //transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
 
-        if (Input.GetButtonDown("Jump") && Time.time > canJump)
-        {
-                rb.AddForce(0, jumpForce, 0);
-                canJump = Time.time + timeBeforeNextJump;
-                anim.SetTrigger("jump");
-        }
+        //if (Input.GetButtonDown("Jump") && Time.time > canJump)
+        //{
+        //    rb.AddForce(0, jumpForce, 0);
+        //    //canJump = Time.time + timeBeforeNextJump;
+        //    anim.SetTrigger("jump");
+        //}
     }
 }
