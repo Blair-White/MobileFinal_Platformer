@@ -7,12 +7,15 @@ public class EnemyPatrol : MonoBehaviour
     public Transform[] waypoints;
     public float speed;
     public float range; //for checking how close the AI is to the waypoint
+    public Animator animatorController;
+
 
     private int waypointIndex;
     private float distance;
 
     void Start()
     {
+        animatorController = GetComponent<Animator>();
         waypointIndex = 0;
         transform.LookAt(waypoints[waypointIndex].position);
     }
@@ -31,6 +34,7 @@ public class EnemyPatrol : MonoBehaviour
 
     void Patrol()
     {
+        animatorController.SetInteger("Walk", 1);
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 

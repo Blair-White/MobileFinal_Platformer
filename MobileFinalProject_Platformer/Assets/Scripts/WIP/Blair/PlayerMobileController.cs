@@ -16,6 +16,10 @@ public class PlayerMobileController : MonoBehaviour
     public SpawnManager spawnManager;
     public enum MoveDirections { forward, left, back, right  }//based on starting position + Z is forward
     public MoveDirections moveDirection;
+
+    public Animator playerAnimator;
+    public Rigidbody playerAnimationRb;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +52,7 @@ public class PlayerMobileController : MonoBehaviour
 
         if (isMoving)
         {
+            playerAnimator.SetInteger("Walk", 1);
             if (Input.GetKeyDown(KeyCode.LeftArrow) || (Input.GetKeyDown(KeyCode.A))) { Swiped("left"); }
             if (Input.GetKeyDown(KeyCode.RightArrow) || (Input.GetKeyDown(KeyCode.D))) { Swiped("right"); }
             if (Input.GetKeyDown(KeyCode.W) || (Input.GetKeyDown(KeyCode.Space))) { Swiped("up"); }
@@ -96,8 +101,11 @@ public class PlayerMobileController : MonoBehaviour
 
     private void Move()
     {
-         transform.position += transform.forward * movementSpeed * Time.deltaTime; 
-         
+        transform.position += transform.forward * movementSpeed * Time.deltaTime;
+        if (isGrounded)
+        {
+            playerAnimationRb.velocity = Vector3.zero;
+        }
     }
     private void Swiped(string Direction)
     {
@@ -119,8 +127,10 @@ public class PlayerMobileController : MonoBehaviour
             case "up":
                 if(isGrounded)
                 {
-                this.GetComponent<Rigidbody>().AddForce(0, 222, 0, ForceMode.Impulse);
-                isGrounded = false;
+                    playerAnimator.SetTrigger("jump");
+                    playerAnimationRb.AddForce(0, 200, 0, ForceMode.Impulse);
+                    this.GetComponent<Rigidbody>().AddForce(0, 222, 0, ForceMode.Impulse);
+                    isGrounded = false;
                 }
                 
                 break;
