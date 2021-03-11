@@ -33,6 +33,8 @@ public class PlayerMobileController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(health<=0)
+        { SceneManager.LoadScene(5); }
         mScore++;
         score.GetComponent<TextMeshProUGUI>().text = mScore.ToString();
         healthbar.transform.localScale = new Vector3(health, 1, 1);
@@ -212,16 +214,24 @@ public class PlayerMobileController : MonoBehaviour
             Soundmanager.instance.PlaySoundOneShot(Soundmanager.instance.PowerUp, .6f);
         }
 
-        if(collision.gameObject.tag == "goal")
+        if (collision.gameObject.tag == "goal")
         {
             SceneManager.LoadScene(4);
         }
 
-        if(collision.gameObject.tag == "FistPickup")
+        if (collision.gameObject.tag == "FistPickup")
         {
             Destroy(collision.gameObject);
             fistInt++;
             fistAmount.GetComponent<TextMeshProUGUI>().text = fistInt.ToString();
+        }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(collision.gameObject);
+            HitSlow();
+            health -= 0.2f;
+            Soundmanager.instance.PlaySoundOneShot(Soundmanager.instance.PlayerDamaged, 0.74f);
         }
 
     }

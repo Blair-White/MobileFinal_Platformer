@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test Scenes/Blair/WinScene.unity
     guid: 1bf8d78af756c4344b3c6d8110c7a1e8
+  - enabled: 1
+    path: Assets/Scenes/Test Scenes/Blair/LoseScene.unity
+    guid: d12e32ab91e49a04580c434569955c3d
   m_configObjects: {}
