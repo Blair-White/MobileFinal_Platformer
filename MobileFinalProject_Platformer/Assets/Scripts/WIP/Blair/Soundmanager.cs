@@ -7,10 +7,11 @@ public class Soundmanager : MonoBehaviour
 {
 
     public static Soundmanager instance = null;
-    public AudioClip PlayerDamaged, Jump, SwipeMove, PowerUp, Slowed, Click;
+    public AudioClip PlayerDamaged, Jump, SwipeMove, PowerUp, Slowed, Click, Blip;
     public AudioSource AudSrc, MusicSrc;
     public float SfxGlobalModifier, MusicGlobalModifier, StartingMusicVolume;
-    public GameObject SfxSlider, MusicSlider; 
+    public GameObject SfxSlider, MusicSlider;
+    public bool InvertedControls;
     private void Awake()
     {
         if (instance == null) instance = this;

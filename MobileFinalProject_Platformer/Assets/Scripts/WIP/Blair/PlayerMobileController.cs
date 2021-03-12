@@ -12,7 +12,7 @@ public class PlayerMobileController : MonoBehaviour
     private int mScore, swipePosition, slideCount, mushroomInt, gemInt, coinInt, fistInt;
     private bool isSlowed, isFast, isMoving, isIdle, isSlidingLeft, isSlidingRight, isGrounded;
     public bool isRotating;
-    private float slowCount, fastCount, rotateCount;
+    private float slowCount, fastCount, rotateCount, lowHealthCount;
     public SpawnManager spawnManager;
     public enum MoveDirections { forward, left, back, right  }//based on starting position + Z is forward
     public MoveDirections moveDirection;
@@ -33,6 +33,26 @@ public class PlayerMobileController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0.45f) 
+        {
+            lowHealthCount += Time.deltaTime;
+            if(health <0.25f)
+            {
+                if(lowHealthCount > .5f)
+                {
+                    Soundmanager.instance.PlaySoundOneShot(Soundmanager.instance.Blip, .29f);
+                    lowHealthCount = 0;
+                }
+            }
+            else
+            {
+                if(lowHealthCount > 1.0f)
+                {
+                    Soundmanager.instance.PlaySoundOneShot(Soundmanager.instance.Blip, .29f);
+                    lowHealthCount = 0;
+                }
+            }
+        }
         if(health<=0)
         { SceneManager.LoadScene(5); }
         mScore++;
@@ -55,9 +75,20 @@ public class PlayerMobileController : MonoBehaviour
         if (isMoving)
         {
             playerAnimator.SetInteger("Walk", 1);
-            if (Input.GetKeyDown(KeyCode.LeftArrow) || (Input.GetKeyDown(KeyCode.A))) { Swiped("left"); }
-            if (Input.GetKeyDown(KeyCode.RightArrow) || (Input.GetKeyDown(KeyCode.D))) { Swiped("right"); }
-            if (Input.GetKeyDown(KeyCode.W) || (Input.GetKeyDown(KeyCode.Space))) { Swiped("up"); }
+            if(!Soundmanager.instance.InvertedControls)
+            {
+                if (Input.GetKeyDown(KeyCode.LeftArrow) || (Input.GetKeyDown(KeyCode.A))) { Swiped("left"); }
+                if (Input.GetKeyDown(KeyCode.RightArrow) || (Input.GetKeyDown(KeyCode.D))) { Swiped("right"); }
+                if (Input.GetKeyDown(KeyCode.W) || (Input.GetKeyDown(KeyCode.Space))) { Swiped("up"); }
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.LeftArrow) || (Input.GetKeyDown(KeyCode.A))) { Swiped("right"); }
+                if (Input.GetKeyDown(KeyCode.RightArrow) || (Input.GetKeyDown(KeyCode.D))) { Swiped("left"); }
+                if (Input.GetKeyDown(KeyCode.S) || (Input.GetKeyDown(KeyCode.Space))) { Swiped("up"); }
+
+            }
+            
 
             Move();
         }
@@ -68,6 +99,7 @@ public class PlayerMobileController : MonoBehaviour
     private void FixedUpdate()
     {
        
+
         if (isRotating)
         {
             rotateCount += Time.deltaTime;
