@@ -103,6 +103,7 @@ public class PlayerMobileController : MonoBehaviour
 
     private void Move()
     {
+        if (isRotating) return;
         transform.position += transform.forward * movementSpeed * Time.deltaTime;
         if (isGrounded)
         {
