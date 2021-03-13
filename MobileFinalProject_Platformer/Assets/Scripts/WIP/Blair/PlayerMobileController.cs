@@ -209,7 +209,7 @@ public class PlayerMobileController : MonoBehaviour
         if (collision.gameObject.tag == "Platform")
         {
             //temp
-            health -= 0.1f;
+           // health -= 0.1f;
 
 
         }
@@ -237,6 +237,7 @@ public class PlayerMobileController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             health -= 0.1f;
+            Debug.Log("Damage Pickup");
         }
 
         if (collision.gameObject.tag == "CoinPickup")
@@ -265,6 +266,7 @@ public class PlayerMobileController : MonoBehaviour
             HitSlow();
             health -= 0.2f;
             Soundmanager.instance.PlaySoundOneShot(Soundmanager.instance.PlayerDamaged, 0.74f);
+            Debug.Log("Enemy Damage");
         }
 
     }
@@ -305,5 +307,10 @@ public class PlayerMobileController : MonoBehaviour
             health += 0.2f;
             if (health > 1) health = 1;
         }
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        health -= dmg;
     }
 }

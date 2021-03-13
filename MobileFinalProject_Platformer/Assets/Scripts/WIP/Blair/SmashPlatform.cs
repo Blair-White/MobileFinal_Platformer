@@ -25,6 +25,7 @@ public class SmashPlatform : MonoBehaviour
             if(count > destroyDelay)
             {
                 Destroy(toDestroy);
+                mPlayer.GetComponent<PlayerMobileController>().TakeDamage(0.1f);
             }
         }
     }

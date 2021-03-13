@@ -53,6 +53,7 @@ MonoBehaviour:
   PowerUp: {fileID: 8300000, guid: f9403131459957f459c3b6c1ce66d5c8, type: 3}
   Slowed: {fileID: 8300000, guid: f6ed9382dd55c214d8f4c95c1b299501, type: 3}
   Click: {fileID: 8300000, guid: a5b7a8a26c6f27e459026c23069fd4ac, type: 3}
+  Blip: {fileID: 8300000, guid: e457890df6807c149b6c4f742bd27157, type: 3}
   AudSrc: {fileID: 1810020504851996775}
   MusicSrc: {fileID: 407622947102690590}
   SfxGlobalModifier: 0
@@ -60,6 +61,7 @@ MonoBehaviour:
   StartingMusicVolume: 1
   SfxSlider: {fileID: 0}
   MusicSlider: {fileID: 0}
+  InvertedControls: 0
 --- !u!82 &1810020504851996775
 AudioSource:
   m_ObjectHideFlags: 0
