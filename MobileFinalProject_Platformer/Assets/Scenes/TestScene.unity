@@ -2420,7 +2420,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.35
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -2467,13 +2467,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457517796}
-  m_LocalRotation: {x: 0.5341994, y: -0.24826175, z: 0.073179625, w: 0.804762}
+  m_LocalRotation: {x: 0.5159533, y: -0.3976058, z: 0.22709344, w: 0.72396857}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 63.656, y: -46.406, z: -19.408}
+  m_LocalEulerAnglesHint: {x: 68.072, y: -66.082, z: -12.602}
 --- !u!4 &467626369 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3010198344013550590, guid: 3aeb2b05d534190489423f06d956295d, type: 3}
@@ -3872,7 +3872,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -3919,13 +3919,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 736430893}
-  m_LocalRotation: {x: 0.80900145, y: -0.2569581, z: -0.031011183, w: 0.52775717}
+  m_LocalRotation: {x: -0.77649146, y: 0.5067445, z: 0.005834394, w: 0.37448242}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 56.927, y: -143.917, z: -124.729}
+  m_LocalEulerAnglesHint: {x: -35.978, y: -207.245, z: 255.256}
 --- !u!1001 &755570061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8731,7 +8731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2414175082627451997, guid: cf98857702f38054bbf327042b016120, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 84.7
+      value: 123.1
       objectReference: {fileID: 0}
     - target: {fileID: 2414175082627451997, guid: cf98857702f38054bbf327042b016120, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10869,9 +10869,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1092033716}
     m_Modifications:
+    - target: {fileID: 651875489688709489, guid: 761ad4622f04b3546b66d9581e05de02, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1300151875110324388, guid: 761ad4622f04b3546b66d9581e05de02, type: 3}
       propertyPath: m_Name
       value: BreadDamagePlayer (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1300151875110324388, guid: 761ad4622f04b3546b66d9581e05de02, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1819667079929926174, guid: 761ad4622f04b3546b66d9581e05de02, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11710,6 +11718,10 @@ PrefabInstance:
     - target: {fileID: 5646865038084397852, guid: 46be0c2e2c343934b90dfc1bf796cd9c, type: 3}
       propertyPath: m_Name
       value: SoundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5646865038084397852, guid: 46be0c2e2c343934b90dfc1bf796cd9c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3359133241277201520, guid: 46be0c2e2c343934b90dfc1bf796cd9c, type: 3}

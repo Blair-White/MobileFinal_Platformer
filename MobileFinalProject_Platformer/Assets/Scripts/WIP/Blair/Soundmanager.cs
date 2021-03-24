@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Soundmanager : MonoBehaviour
 {
@@ -29,7 +30,14 @@ public class Soundmanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (SceneManager.GetActiveScene().name == "MainMenuScene")
+        {
+            MusicSrc.mute = true;
+        }
+        else
+        {
+            MusicSrc.mute = false;
+        }
     }
 
     public void PlaySoundOneShot(AudioClip snd, float volume)
