@@ -98,6 +98,7 @@ public class SwipeDetection : MonoBehaviour
     void OnSwipeUp()
     {
         Debug.Log("Swipe UP");
+        player.SendMessage("Swiped", "up");
     }
 
     void OnSwipeDown()
