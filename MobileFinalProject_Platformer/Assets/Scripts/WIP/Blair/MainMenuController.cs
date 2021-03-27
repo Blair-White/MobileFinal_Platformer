@@ -67,4 +67,11 @@ public class MainMenuController : MonoBehaviour
     {
 
     }
+
+    public void LoadPushed()
+    {
+        if (PlayerPrefs.GetInt("HasSave") == 0) return;
+        SaveBehaviour.instance.isLoading = true;
+        SceneManager.LoadScene(2);
+    }
 }

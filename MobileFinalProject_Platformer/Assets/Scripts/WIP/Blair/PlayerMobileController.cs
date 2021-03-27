@@ -9,7 +9,8 @@ public class PlayerMobileController : MonoBehaviour
     public float baseMovementSpeed, swipeForce;
     private float movementSpeed, health;
     public GameObject healthbar, score, hscore, currentTurnCollider, mushroomPrefab, gemPrefab, fistAmount, mushroomAmount, coinAmount, gemAmount;
-    private int mScore, swipePosition, slideCount, mushroomInt, gemInt, coinInt, fistInt;
+    private int swipePosition, slideCount, mushroomInt, gemInt, coinInt, fistInt;
+    public int mScore;
     private bool isSlowed, isFast, isMoving, isIdle, isSlidingLeft, isSlidingRight, isGrounded;
     public bool isRotating;
     private float slowCount, fastCount, rotateCount, lowHealthCount;
