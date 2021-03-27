@@ -97,24 +97,48 @@ public class SwipeDetection : MonoBehaviour
   
     void OnSwipeUp()
     {
-        Debug.Log("Swipe UP");
-        player.SendMessage("Swiped", "up");
+        if (!Soundmanager.instance.InvertedControls)
+        {
+            player.SendMessage("Swiped", "up");
+        }
+        
     }
 
     void OnSwipeDown()
     {
+        if (Soundmanager.instance.InvertedControls)
+        {
+            player.SendMessage("Swiped", "up");
+        }
+     
         Debug.Log("Swipe Down");
     }
 
     void OnSwipeLeft()
     {
         player.SendMessage("Swiped", "left");
-        Debug.Log("Swipe Left");
+        if (!Soundmanager.instance.InvertedControls)
+        {
+            Debug.Log("Swipe Left");
+        }
+        else
+        {
+            Debug.Log("Swipe Right");
+        }
+            
     }
 
     void OnSwipeRight()
     {
-        player.SendMessage("Swiped", "right");
+        player.SendMessage("Swiped", "left");
+        if (!Soundmanager.instance.InvertedControls)
+        {
+            Debug.Log("Swipe Right");
+        }
+        else
+        {
+            Debug.Log("Swipe Left");
+        }
         Debug.Log("Swipe Right");
     }
 }
