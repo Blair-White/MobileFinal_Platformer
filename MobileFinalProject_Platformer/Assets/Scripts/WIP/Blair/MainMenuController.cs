@@ -74,4 +74,9 @@ public class MainMenuController : MonoBehaviour
         SaveBehaviour.instance.isLoading = true;
         SceneManager.LoadScene(2);
     }
+
+    public void ExitPushed()
+    {
+        Application.Quit();
+    }
 }
