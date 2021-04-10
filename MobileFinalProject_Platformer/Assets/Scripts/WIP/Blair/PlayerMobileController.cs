@@ -251,6 +251,7 @@ public class PlayerMobileController : MonoBehaviour
 
         if (collision.gameObject.tag == "goal")
         {
+            SetScore();
             SceneManager.LoadScene(4);
         }
 
